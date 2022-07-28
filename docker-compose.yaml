@@ -1,0 +1,14 @@
+version: '3.9'
+
+services:
+  meteo_backend:
+    image: meteo_backend
+    build:
+      context: backend
+      dockerfile: Dockerfile
+    container_name: meteo_backend
+    expose:
+      - '3000'
+    ports:
+      - '3100:3000'
+    restart: always
