@@ -1,10 +1,15 @@
 const express = require('express')
 const axios = require('axios').default;
+var cors = require('cors');
 const app = express()
 const openweathermapApiUrl = 'https://api.openweathermap.org/data/2.5/forecast'
 const iconUrl = 'https://openweathermap.org/img/wn/';
 
 const apiKey = 'f4c41534b03ad0ee7587b5f76d4b711f'
+
+app.use(cors({
+  origin: 'http://localhost:4200'
+}));
 
 app.get('/api/status', function (req, res) {
   res.send('ok')
@@ -13,7 +18,7 @@ app.get('/api/status', function (req, res) {
 app.get('/api/meteo', function (req, res) {
   const location = req.query.location;
   if (!location) {
-    res.status(400).send('Missing location parameter');
+    return res.status(400).send('Missing location parameter');
   }
   axios.get(openweathermapApiUrl, {
     params: {
@@ -22,10 +27,10 @@ app.get('/api/meteo', function (req, res) {
       units: 'metric'
     }
   }).then(function (response) {
-    res.send(parseForecastResponse(response.data));
+    return res.send(JSON.stringify(parseForecastResponse(response.data)));
   }).catch(function (error) {
     console.log(error);
-    res.status(500).send(error);
+    return res.status(500).send(error);
   })
 })
 

@@ -1,5 +1,7 @@
-import {Component} from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
+import {Observable, Subscription} from 'rxjs';
 import {MeteoService} from './meteo.service';
+import {MeteoResponse} from "../model/MeteoResponse";
 
 
 @Component({
@@ -7,13 +9,28 @@ import {MeteoService} from './meteo.service';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent {
+export class AppComponent implements OnInit, OnDestroy {
   title = 'meteo';
-  
+  meteo!: MeteoResponse;
+  meteoSubscription!: Subscription
+
   constructor(private meteoService: MeteoService) {
   }
 
+  ngOnInit(): void {
+    this.meteoSubscription = this.meteoService.getMeteoForLocation('rome')
+      .subscribe((resp) => {
+          console.log(resp);
+          this.meteo = resp;
+        }
+      );
+  }
+
   search(location: string) {
-    this.meteoService.getMeteoForLocation(location)
+
+  }
+
+  ngOnDestroy(): void {
+    this.meteoSubscription.unsubscribe();
   }
 }
