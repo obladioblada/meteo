@@ -21,7 +21,3 @@ services:
       - '90:80'
     depends_on:
       - meteo_backend
-
-networks:
-  default:
-    name: local-network

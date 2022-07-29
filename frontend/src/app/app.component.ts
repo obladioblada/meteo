@@ -13,6 +13,7 @@ export class AppComponent implements OnInit, OnDestroy {
   title = 'meteo';
   meteo!: MeteoResponse;
   meteoSubscription!: Subscription
+  error!: string;
 
   constructor(private meteoService: MeteoService) {
   }
@@ -20,19 +21,28 @@ export class AppComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.meteoSubscription = this.meteoService.getMeteoForLocation('rome')
       .subscribe((resp) => {
-
           this.meteo = resp;
+          console.log(resp)
         }
       );
   }
 
-  search(location: string) {
-    this.meteoSubscription = this.meteoService.getMeteoForLocation(location)
-      .subscribe((resp) => {
+  isEmpty(obj: any) {
+    return Object.keys(obj).length === 0 || obj === undefined;
+  }
 
-          this.meteo = resp;
-        }
-      );
+  search(location: string) {
+    if (location.length > 0) {
+      this.meteoSubscription = this.meteoService.getMeteoForLocation(location)
+        .subscribe((resp) => {
+            console.log(resp);
+            if (this.isEmpty(resp)) {
+              console.log("no resp from server")
+            }
+            this.meteo = resp;
+          }
+        );
+    }
   }
 
   ngOnDestroy(): void {

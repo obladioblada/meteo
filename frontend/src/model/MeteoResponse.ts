@@ -3,5 +3,6 @@ import {CityItem} from "./CityItem";
 
 export interface MeteoResponse {
    city: CityItem;
-   list: MeteoItem[]
+   list: MeteoItem[],
+   error: String
 }

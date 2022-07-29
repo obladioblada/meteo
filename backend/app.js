@@ -30,7 +30,7 @@ app.get('/api/meteo', function (req, res) {
     return res.send(JSON.stringify(parseForecastResponse(response.data)));
   }).catch(function (error) {
     console.log(error);
-    return res.status(500).send(error);
+    return res.status(500).send(error.data.message);
   })
 })
 

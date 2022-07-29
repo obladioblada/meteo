@@ -2,17 +2,23 @@
   <h1>METEO</h1>
 </div>
 <div style="text-align: center;">
-  <input #location  type="search" id="location-search" name="location" placeholder="Rome">
+  <input #location  type="search" id="location-search" name="location" value="Rome">
   <button (click)="search(location.value)">SEARCH</button>
 </div>
-<div *ngIf="meteo ">
+<div *ngIf="!isEmpty(meteo);else no_content_found">
   <app-city [city]="meteo.city"></app-city>
-    <ul>
+    <ul *ngIf="meteo.list">
       <li *ngFor="let meteoItem of meteo.list">
         <app-meteo-item [meteoItem]="meteoItem"></app-meteo-item>
       </li>
     </ul>
 </div>
+
+<ng-template #no_content_found>
+  <div style="text-align: center">
+    <img src="https://media.giphy.com/media/p45mW9QnaPBAc/giphy.gif" alt="failed request" style="width:500px;height:500px;">
+  </div>
+</ng-template>
 
 
 
