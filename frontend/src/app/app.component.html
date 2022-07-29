@@ -3,7 +3,7 @@
 </div>
 <div style="text-align: center;">
   <input #location class="sized-component" type="search" id="location-search" name="location" value="Rome">
-  <button class="" (click)="search(location.value)">SEARCH</button>
+  <button class="sized-component" (click)="search(location.value)">SEARCH</button>
 </div>
 <div *ngIf="!isEmpty(meteo);else no_content_found">
   <app-city [city]="meteo.city"></app-city>
