@@ -8,7 +8,7 @@ const iconUrl = 'https://openweathermap.org/img/wn/';
 const apiKey = 'f4c41534b03ad0ee7587b5f76d4b711f'
 
 app.use(cors({
-  origin: 'http://localhost:4200'
+  origin: ['http://localhost:4200', 'http://localhost:90']
 }));
 
 app.get('/api/status', function (req, res) {

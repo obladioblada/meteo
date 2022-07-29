@@ -1,0 +1,16 @@
+:host {
+  margin: 1em;
+}
+
+.img {
+}
+
+.temp {
+  font-size: large;
+  font-weight: bolder;
+}
+
+.date {
+  font-size: larger;
+  font-weight: bolder;
+}

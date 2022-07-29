@@ -12,3 +12,16 @@ services:
     ports:
       - '3100:3000'
     restart: always
+  
+  meteo_frontend:
+    build:
+      context: frontend
+      dockerfile: Dockerfile
+    ports:
+      - '90:80'
+    depends_on:
+      - meteo_backend
+
+networks:
+  default:
+    name: local-network

@@ -5,11 +5,15 @@ import { AppComponent } from './app.component';
 import { HttpClientModule } from '@angular/common/http';
 import {MeteoService} from './meteo.service';
 import { CommonModule } from '@angular/common';
+import { CityComponent } from './city/city.component';
+import { MeteoComponent } from './meteo/meteo.component';
 
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    CityComponent,
+    MeteoComponent
     
   ],
   imports: [

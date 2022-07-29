@@ -1,24 +1,17 @@
-<div>
+<div style="padding: 1em">
   <h1>METEO</h1>
 </div>
-<div>
-  <button (click)="search('rome')">SEARCH</button>
+<div style="text-align: center;">
+  <input #location  type="search" id="location-search" name="location" placeholder="Rome">
+  <button (click)="search(location.value)">SEARCH</button>
 </div>
 <div *ngIf="meteo ">
-  <div>
-    <h2>{{meteo.city.name}}</h2>
-    <div>
-        <h3>{{meteo.city.temp}}</h3>
-        <img src="{{meteo.city.icon}}" alt="{{meteo.city.weatherDescription}}">
-        <h2>{{meteo.city.weatherDescription}}</h2>
-    </div>
-  </div>
-  <li *ngFor="let meteoItem of meteo.list">
-    <img src="{{meteoItem.icon}}" alt="{{meteoItem.weatherDescription}}">
-    <div>{{meteoItem.dt_txt}}</div>
-    <div>{{meteoItem.temp}}</div>
-    <div>{{meteoItem.weatherDescription}}</div>
-  </li>
+  <app-city [city]="meteo.city"></app-city>
+    <ul>
+      <li *ngFor="let meteoItem of meteo.list">
+        <app-meteo-item [meteoItem]="meteoItem"></app-meteo-item>
+      </li>
+    </ul>
 </div>
 
 

@@ -1,7 +1,6 @@
-FROM node:10-slim
-WORKDIR /usr/local/runme/meteo
-COPY app.js app.js
-COPY server.js server.js
+FROM node:16.10-slim as build
+WORKDIR /app
+COPY *.js .
 COPY package.json package.json
 RUN npm install
 CMD [ "npm", "run", "start"]

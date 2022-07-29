@@ -20,14 +20,19 @@ export class AppComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.meteoSubscription = this.meteoService.getMeteoForLocation('rome')
       .subscribe((resp) => {
-          console.log(resp);
+
           this.meteo = resp;
         }
       );
   }
 
   search(location: string) {
+    this.meteoSubscription = this.meteoService.getMeteoForLocation(location)
+      .subscribe((resp) => {
 
+          this.meteo = resp;
+        }
+      );
   }
 
   ngOnDestroy(): void {

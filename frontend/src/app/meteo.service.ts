@@ -3,7 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import {catchError, Observable, of } from 'rxjs';
 import {MeteoResponse} from "../model/MeteoResponse";
 
-const meteoBaseUrl = 'http://localhost:3001'
+const meteoBaseUrl = 'http://localhost:3100'
 
 @Injectable({
   providedIn: 'root'
