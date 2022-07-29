@@ -2,8 +2,8 @@
   <h1>METEO</h1>
 </div>
 <div style="text-align: center;">
-  <input #location  type="search" id="location-search" name="location" value="Rome">
-  <button (click)="search(location.value)">SEARCH</button>
+  <input #location class="sized-component" type="search" id="location-search" name="location" value="Rome">
+  <button class="" (click)="search(location.value)">SEARCH</button>
 </div>
 <div *ngIf="!isEmpty(meteo);else no_content_found">
   <app-city [city]="meteo.city"></app-city>
